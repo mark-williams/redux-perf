@@ -1,12 +1,63 @@
 import { EVEN, ODD, PRIME, FIBONACCI } from '../actions/actions';
 
+const enumerate = (start, end, test) => {
+    let results = [];
+    for (let i = start; i <= end; i++) {
+        if (test(i)) {
+            results = [...results, i];
+        }
+    }
+
+    return results;
+};
+
+
+const isPrime = (number) => {
+    if (number === 1) {
+        return false;
+    }
+    const maxFactor = number / 2;
+    for (let f = 2; f <= maxFactor; f++) {
+        if ((number % f) === 0) {
+            return false;
+        }
+    }
+
+    return true;
+};
+
+const getEvens = (max) => (
+    enumerate(1, max, (x) => { return (x % 2 === 0); })
+);
+
+const getOdds = (max) => {
+    return enumerate(1, max, (x) => { return x % 2 !== 0; });
+};
+
+const getPrimes = (max) => {
+    return enumerate(1, max, isPrime);
+};
+
+const getFibonacci = (max) => {
+    let results = [1, 1];
+    while (results.length < 10000) {
+        const fib = results[results.length - 2] + results[results.length - 1];
+        if (fib > max) {
+            return results;
+        }
+
+        results = [...results, fib];
+    }
+};
+
+
 const numbers = (state = [], action) => {
     switch (action.type) {
         case EVEN:
             return getEvens(action.max);
         case ODD:
             return getOdds(action.max);
-        case PRIME: 
+        case PRIME:
             return getPrimes(action.max);
         case FIBONACCI:
             return getFibonacci(action.max);
@@ -16,58 +67,5 @@ const numbers = (state = [], action) => {
     }
 };
 
-const getEvens = (max) => {
-    let results = [];
-    for (var i=1; i <= max; i++) {
-        if (i % 2 === 0) {
-            results = [...results, i];
-        }
-    }
-
-    return results;
-};
-
-const getOdds = (max) => {
-    let results = [];
-    for (var i=1; i <= max; i++) {
-        if (i % 2 !== 0) {
-            results = [...results, i];
-        }
-    }
-
-    return results;
-};
-
-const getPrimes = (max) => {
-    let results = [];
-    for (var i = 2; i <= max; i++) {
-        if (isPrime(i)) {
-            results = [...results, i];
-        }
-    }
-    return results;
-};
-
-const isPrime = (number) => {
-    for (let f = 2; f < number; f++) {
-        if ((number % f) === 0) {
-            return false;
-        }
-    }
-
-    return true;
-};
-
-const getFibonacci = (max) => {
-    let results = [1, 1];
-    while(true) {
-        let fib = results[results.length - 2] + results[results.length - 1];
-        if (fib > max || results.length > 1000) {
-            return results;
-        }
-
-        results = [...results, fib];
-    }
-};
 
 export default numbers;

@@ -59,16 +59,16 @@ describe('numbers reducer', () => {
             action = { type: ACTIONTYPES.PRIME, max: maxValue };
         });
 
-        it('given an primes action should return odd numbers up to and including the max', () => {
+        it('given an primes action should return numbers up to and including the max', () => {
             let newState = numbers([], action);
 
             let expected = 7;
             expect(newState[newState.length - 1]).toEqual(expected);
         });
 
-        it('given an prime action should return odd numbers', () => {
+        it('given an prime action should return prime numbers', () => {
             let newState = numbers([], action);
-
+           
             expect(newState).toBeDefined();
             expect(newState).toEqual([2,3,5,7]);
         });
