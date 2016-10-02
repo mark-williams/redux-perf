@@ -18,6 +18,21 @@
   font-size: large;
 }
 
+.numbers-container {
+  margin: 1em;
+  width: 800px;
+  float: left;
+  text-align: left;
+}
+
+.numbers-container span {
+  margin-right: 0.8em;
+  float: left;
+  width: 4em;
+  text-align: right;
+  line-height: 1.8em;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
