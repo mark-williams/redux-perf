@@ -1,32 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import _ from 'lodash';
 
-class Numbers extends Component {
+const Numbers = (props) => {
 
-    constructor(props) {
-        super();
-        let ns = [];
-        let max = props.max;
-        for (let i=1; i <= max; i++) {
-            ns = [...ns, i];
-        }
-        this.state = { numbers: ns, selection: props.selection };
-
-        console.log('Render numbers');
+    let ns = [];
+    for (let i=1; i <= props.max; i++) {
+        ns = [...ns, i];
     }
 
-    renderNumber(n) {
-        let c = _.includes(this.props.selection, n) ? 'selected' : '';
+    const renderNumber = (n) => {
+        let c = _.includes(props.selection, n) ? 'selected' : '';
         return <span key={n} className={ c }>{ n }</span>
     }
 
-    render() {
-        return (
-            <div>
-                { this.state.numbers.map(this.renderNumber.bind(this)) }
-            </div>
-        );
-    }
-}
+    return (
+        <div>
+            { ns.map(renderNumber.bind(this)) }
+        </div>
+    )
+};
 
 export default Numbers;
