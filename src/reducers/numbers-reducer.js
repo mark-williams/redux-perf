@@ -1,4 +1,4 @@
-import { EVEN, ODD, PRIME, FIBONACCI } from '../actions/actions';
+import { EVEN, FIBONACCI, ODD, PRIME } from '../actions/actions';
 
 const enumerate = (start, end, test) => {
     let results = [];
@@ -27,16 +27,12 @@ const isPrime = (number) => {
 };
 
 const getEvens = (max) => (
-    enumerate(1, max, (x) => { return (x % 2 === 0); })
+    enumerate(1, max, (x) => (x % 2 === 0))
 );
 
-const getOdds = (max) => {
-    return enumerate(1, max, (x) => { return x % 2 !== 0; });
-};
+const getOdds = (max) => enumerate(1, max, (x) => x % 2 !== 0);
 
-const getPrimes = (max) => {
-    return enumerate(1, max, isPrime);
-};
+const getPrimes = (max) => enumerate(1, max, isPrime);
 
 const getFibonacci = (max) => {
     let results = [1, 1];
@@ -48,6 +44,8 @@ const getFibonacci = (max) => {
 
         results = [...results, fib];
     }
+
+    return results;
 };
 
 

@@ -1,14 +1,13 @@
-import time from './time-reducer';
 import { UPDATETIME } from '../actions/actions';
+import time from './time-reducer';
 
 describe('time reducer', () => {
     it('given an update action it should return the current time', () => {
-        let action = { type: UPDATETIME };
-        let newState = time({}, action);
-
+        const action = { type: UPDATETIME };
+        const newState = time({}, action);
         expect(newState.currentTime).toBeDefined;
-        console.log(newState);
-        let tolerance = (new Date()) - newState.currentTime;
+                
+        const tolerance = (new Date()) - newState.currentTime;
         expect(tolerance).toBeLessThan(100);
     });
 });

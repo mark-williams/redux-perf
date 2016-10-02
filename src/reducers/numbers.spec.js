@@ -1,5 +1,5 @@
-import numbers from './numbers-reducer';
 import * as ACTIONTYPES from '../actions/actions';
+import numbers from './numbers-reducer';
 
 
 describe('numbers reducer', () => {
@@ -14,22 +14,20 @@ describe('numbers reducer', () => {
         });
 
         it('given an evens action should return numbers up to and including the max', () => {
-            let newState = numbers([], action);
-
+            const newState = numbers([], action);
             expect(newState[newState.length - 1]).toEqual(maxValue);
         });
 
         it('given an evens action should return even numbers', () => {
-            let newState = numbers([], action);
+            const newState = numbers([], action);
 
             expect(newState).toBeDefined();
-            expect(newState).toEqual([2,4,6,8,10]);
+            expect(newState).toEqual([2, 4, 6, 8, 10]);
         });
     });
 
 
     describe('odds', () => {
-        
         let action = {};
         beforeEach(() => {
             maxValue = 10;
@@ -37,22 +35,21 @@ describe('numbers reducer', () => {
         });
 
         it('given an odds action should return odd numbers up to and including the max', () => {
-            let newState = numbers([], action);
+            const newState = numbers([], action);
 
-            let expected = maxValue % 2 ? maxValue : maxValue - 1;
+            const expected = maxValue % 2 ? maxValue : maxValue - 1;
             expect(newState[newState.length - 1]).toEqual(expected);
         });
 
         it('given an odds action should return odd numbers', () => {
-            let newState = numbers([], action);
+            const newState = numbers([], action);
 
             expect(newState).toBeDefined();
-            expect(newState).toEqual([1,3,5,7,9]);
+            expect(newState).toEqual([1, 3, 5, 7, 9]);
         });
     });
 
-     describe('primes', () => {
-        
+    describe('primes', () => {
         let action = {};
         beforeEach(() => {
             maxValue = 10;
@@ -60,39 +57,39 @@ describe('numbers reducer', () => {
         });
 
         it('given an primes action should return numbers up to and including the max', () => {
-            let newState = numbers([], action);
+            const newState = numbers([], action);
 
-            let expected = 7;
+            const expected = 7;
             expect(newState[newState.length - 1]).toEqual(expected);
         });
 
         it('given an prime action should return prime numbers', () => {
-            let newState = numbers([], action);
-           
+            const newState = numbers([], action);
+
             expect(newState).toBeDefined();
-            expect(newState).toEqual([2,3,5,7]);
+            expect(newState).toEqual([2, 3, 5, 7]);
         });
     });
 
     describe('fibonacci', () => {
-        
+
         let action = {};
         beforeEach(() => {
             maxValue = 21;
             action = { type: ACTIONTYPES.FIBONACCI, max: maxValue };
         });
 
-        it('given an fibonacci action should return fibonacci numbers up to and including the max', () => {
-            let newState = numbers([], action)
+        it('given an fibonacci action should return fibonacci numbers up to max', () => {
+            const newState = numbers([], action);
 
             expect(newState[newState.length - 1]).toEqual(maxValue);
         });
 
         it('given an prime action should return odd numbers', () => {
-            let newState = numbers([], action);
+            const newState = numbers([], action);
 
             expect(newState).toBeDefined();
-            expect(newState).toEqual([1,1,2,3,5,8,13,21]);
+            expect(newState).toEqual([1, 1, 2, 3, 5, 8, 13, 21]);
         });
     });
 });
