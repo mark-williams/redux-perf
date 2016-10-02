@@ -37,6 +37,19 @@
  color: #ee3399;
 }
 
+.number-selector ul {
+  list-style-type: none;
+}
+
+.number-selector li {
+  width: 8em;
+  display: inline-block;
+}
+
+.number-selector input[type="radio"] {
+  margin-right: 1em;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
