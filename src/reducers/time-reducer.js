@@ -7,7 +7,7 @@ const initialState = {
 const time = (state = initialState, action) => {
     switch (action.type) {
         case UPDATETIME:
-            return Object.assign({}, { currentTime : new Date() });
+            return Object.assign({}, { currentTime: new Date() });
         default:
             return state;
     }
