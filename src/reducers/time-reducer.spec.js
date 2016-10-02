@@ -6,7 +6,7 @@ describe('time reducer', () => {
         const action = { type: UPDATETIME };
         const newState = time({}, action);
         expect(newState.currentTime).toBeDefined;
-                
+
         const tolerance = (new Date()) - newState.currentTime;
         expect(tolerance).toBeLessThan(100);
     });

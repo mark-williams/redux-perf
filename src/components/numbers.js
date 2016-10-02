@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 
 class Numbers extends Component {
 
@@ -9,18 +10,21 @@ class Numbers extends Component {
         for (let i=1; i <= max; i++) {
             ns = [...ns, i];
         }
-        this.state = { numbers: ns };
+        this.state = { numbers: ns, selection: props.selection };
+
+        console.log('Render numbers');
     }
 
     renderNumber(n) {
-        return <span key={n}>{ n }&nbsp;</span>
+        let c = _.includes(this.props.selection, n) ? 'selected' : '';
+        return <span key={n} className={ c }>{ n }</span>
     }
 
     render() {
         return (
-            <p>
+            <div>
                 { this.state.numbers.map(this.renderNumber.bind(this)) }
-            </p>
+            </div>
         );
     }
 }

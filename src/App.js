@@ -12,7 +12,7 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <div className="numbers-container">
-          <NumbersContainer></NumbersContainer>
+          <NumbersContainer numbersToShow="150"></NumbersContainer>
         </div>
       </div>
     );

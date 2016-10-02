@@ -4,3 +4,5 @@ export const PRIME = 'PRIME';
 export const FIBONACCI = 'FIBONACCI';
 
 export const UPDATETIME = 'UPDATETIME';
+
+export const INITIAL = 'INITIAL';
