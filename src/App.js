@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NumbersContainer from './components/numbers-container';
+import NumbersContainer from './components/numbers/numbers-container';
 import logo from './logo.svg';
 import './App.css';
 

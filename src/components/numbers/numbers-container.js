@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { createStore } from 'redux';
+
 import Numbers from './numbers';
 import NumberSelector from './number-selector';
-import reducer from '../reducers/index';
-import { createStore } from 'redux';
-import { getInitial, getEvens, getOdds, getPrimes, getFibonaccis } from '../actions/actions';
+import reducer from '../../reducers/index';
+import { getInitial, getEvens, getOdds, getPrimes, getFibonaccis } from '../../actions/actions';
 
 class NumbersContainer extends Component {
 
