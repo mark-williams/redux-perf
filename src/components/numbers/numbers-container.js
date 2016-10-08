@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { createStore } from 'redux';
-
 import Numbers from './numbers';
 import NumberSelector from './number-selector';
-import reducer from '../../reducers/index';
-import { getInitial, getEvens, getOdds, getPrimes, getFibonaccis } from '../../actions/actions';
+// import reducer from '../../reducers/index';
+import store from '../../store/store';
+import { getEvens, getFibonaccis, getInitial, getOdds, getPrimes } from '../../actions/actions';
 
 class NumbersContainer extends Component {
 
@@ -12,7 +11,7 @@ class NumbersContainer extends Component {
         super();
 
         this.numbersToShow = props.numbersToShow;
-        this.store = createStore(reducer); 
+        this.store = store;
         this.store.dispatch(getInitial(props.numbersToShow));
         this.state = this.store.getState();
 
@@ -24,7 +23,7 @@ class NumbersContainer extends Component {
     }
 
     onChoiceChange(e) {
-        switch(e.target.value) {
+        switch (e.target.value) {
             case 'odd':
                 this.store.dispatch(getOdds(this.numbersToShow));
                 break;
@@ -48,8 +47,12 @@ class NumbersContainer extends Component {
         return (
             <div>
                 <h3>Numbers</h3>
-                <NumberSelector onChoiceChange={ this.onChoiceChange.bind(this) }></NumberSelector>
-                <Numbers max={ this.props.numbersToShow } selection={ this.state.numbers }></Numbers>
+                <NumberSelector
+                    onChoiceChange={ this.onChoiceChange.bind(this) }>
+                </NumberSelector>
+                <Numbers
+                    max={ this.props.numbersToShow } selection={ this.state.numbers }>
+                </Numbers>
             </div>
         );
     }
