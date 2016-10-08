@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { getEvens, getFibonaccis, getInitial, getOdds, getPrimes } from '../../actions/actions';
 import NumberSelector from './number-selector';
 import Numbers from './numbers';
-import store from '../../store/store';
+import configureStore from '../../store/store';
 
 
 class NumbersContainer extends Component {
 
     constructor(props) {
-        super();
+        super(props);
 
         this.numbersToShow = props.numbersToShow;
-        this.store = store;
+        this.store = configureStore();
         this.store.dispatch(getInitial(props.numbersToShow));
         this.state = this.store.getState();
 

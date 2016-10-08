@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import { UPDATETIME } from '../../actions/actions';
-import store from '../../store/store';
+import configureStore from '../../store/store';
+import { updateTime } from '../../actions/actions';
 
 class TimeContainer extends Component {
     constructor(props) {
         super(props);
-        this.store = store;
+        this.store = configureStore();
 
         this.state = this.store.getState();
         this.store.subscribe(this.onStoreUpdate.bind(this));
 
         setInterval(() => {
-            this.store.dispatch({ type: UPDATETIME });
+            this.store.dispatch(updateTime());
         }, 10);
     }
 
