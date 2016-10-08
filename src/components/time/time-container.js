@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import store from '../../store/store';
 import { UPDATETIME } from '../../actions/actions';
+import store from '../../store/store';
 
 class TimeContainer extends Component {
     constructor(props) {

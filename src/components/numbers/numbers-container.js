@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Numbers from './numbers';
-import NumberSelector from './number-selector';
-// import reducer from '../../reducers/index';
-import store from '../../store/store';
 import { getEvens, getFibonaccis, getInitial, getOdds, getPrimes } from '../../actions/actions';
+import NumberSelector from './number-selector';
+import Numbers from './numbers';
+import store from '../../store/store';
+
 
 class NumbersContainer extends Component {
 

@@ -18,7 +18,7 @@ const Numbers = (props) => {
 
     return (
         <div>
-            { ns.map(renderNumber.bind(this)) }
+            { ns.map(renderNumber) }
         </div>
     );
 };

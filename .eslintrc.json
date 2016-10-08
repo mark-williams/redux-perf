@@ -5,7 +5,11 @@
     "jasmine": true
   },
   "extends": [
-    "eslint:recommended"
+    "eslint:recommended", 
+    "plugin:react/recommended"
+  ],
+  "plugins": [
+    "react"
   ],
   "parserOptions": {
         "sourceType": "module",
@@ -13,6 +17,10 @@
             "jsx": true
         }
     },
+  "globals": {
+    "document": true,
+    "window": true
+  },
   "rules": {
     "accessor-pairs": "error",
     "array-bracket-spacing": [
@@ -222,6 +230,9 @@
     "yoda": [
       "error",
       "never"
-    ]
+    ],
+
+    "react/prop-types": 0
+
   }
 }

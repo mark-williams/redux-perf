@@ -1,9 +1,9 @@
-/* eslint-disable */
+import './App.css';
 import React, { Component } from 'react';
 import NumbersContainer from './components/numbers/numbers-container';
 import TimeContainer from './components/time/time-container';
 import logo from './logo.svg';
-import './App.css';
+
 
 class App extends Component {
     render() {
