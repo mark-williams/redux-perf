@@ -7,3 +7,15 @@ Initial creation of reducers with simple tests.
 
 ###8 Oct 2016
 Added an extra component that displays the current time. This is extremely arbitary, and it uses the redux store to get the current time, however the thinking here is to replicate a use case where, say, a status panel is updated based on the store and is very dynamic (say, polling an api at a small interval). The idea is to see how this affects other components that depend on the store.
+
+###9 Oct 2016
+Refactoring to use react-redux and provide store to components rather than them just importing it. This has benefts for testing, meaning a store can be mocked and passed in. 
+
+Step 1 is to remove individual imports of the store and pass it down via props to each container component. So, now each cmponent will access the store directly from its props:
+
+~~~
+ const { store } = props;
+ store.dispatch(getInitial(props.numbersToShow));
+ this.state = store.getState();
+ store.subscribe(this.onStoreUpdate.bind(this));
+~~~
