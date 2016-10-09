@@ -4,9 +4,14 @@ import NumbersContainer from './components/numbers/numbers-container';
 import TimeContainer from './components/time/time-container';
 import logo from './logo.svg';
 
-
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.store = props.store;
+    }
     render() {
+        const { store } = this.props;
+
         return (
           <div className="App">
             <div className="App-header">
@@ -14,10 +19,10 @@ class App extends Component {
               <h2>Welcome to React</h2>
             </div>
             <div className="numbers-container">
-              <NumbersContainer numbersToShow="1150"></NumbersContainer>
+              <NumbersContainer store={ store } numbersToShow="1150"></NumbersContainer>
             </div>
             <div className="time-container">
-                  <TimeContainer></TimeContainer>
+                  <TimeContainer store={ store }></TimeContainer>
             </div>
           </div>
       );

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { getEvens, getFibonaccis, getInitial, getOdds, getPrimes } from '../../actions/actions';
 import NumberSelector from './number-selector';
 import Numbers from './numbers';
-import configureStore from '../../store/store';
-
 
 class NumbersContainer extends Component {
 
@@ -11,34 +9,34 @@ class NumbersContainer extends Component {
         super(props);
 
         this.numbersToShow = props.numbersToShow;
-        this.store = configureStore();
-        this.store.dispatch(getInitial(props.numbersToShow));
-        this.state = this.store.getState();
-
-        this.store.subscribe(this.onStoreUpdate.bind(this));
+        const { store } = props;
+        store.dispatch(getInitial(props.numbersToShow));
+        this.state = store.getState();
+        store.subscribe(this.onStoreUpdate.bind(this));
     }
 
     onStoreUpdate() {
-        this.setState(this.store.getState());
+        this.setState(this.props.store.getState());
     }
 
     onChoiceChange(e) {
+        const { store } = this.props;
         switch (e.target.value) {
             case 'odd':
-                this.store.dispatch(getOdds(this.numbersToShow));
+                store.dispatch(getOdds(this.numbersToShow));
                 break;
             case 'even':
-                this.store.dispatch(getEvens(this.numbersToShow));
+                store.dispatch(getEvens(this.numbersToShow));
                 break;
             case 'primes':
-                this.store.dispatch(getPrimes(this.numbersToShow));
+                store.dispatch(getPrimes(this.numbersToShow));
                 break;
             case 'fibonacci':
-                this.store.dispatch(getFibonaccis(this.numbersToShow));
+                store.dispatch(getFibonaccis(this.numbersToShow));
                 break;
 
             default:
-                this.store.dispatch(getEvens(this.numbersToShow));
+                store.dispatch(getEvens(this.numbersToShow));
                 break;
         }
     }

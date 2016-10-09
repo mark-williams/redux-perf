@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
-import configureStore from '../../store/store';
 import { updateTime } from '../../actions/actions';
 
 class TimeContainer extends Component {
     constructor(props) {
         super(props);
-        this.store = configureStore();
 
-        this.state = this.store.getState();
-        this.store.subscribe(this.onStoreUpdate.bind(this));
+        const { store } = props;
 
+        this.state = store.getState();
+        store.subscribe(this.onStoreUpdate.bind(this));
+    }
+
+    componentDidMount() {
         setInterval(() => {
-            this.store.dispatch(updateTime());
+            this.props.store.dispatch(updateTime());
         }, 10);
     }
 
     onStoreUpdate() {
-        this.setState(this.store.getState());
+        this.setState(this.props.store.getState());
     }
 
     renderTime(time) {
