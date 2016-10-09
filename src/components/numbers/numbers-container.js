@@ -1,59 +1,60 @@
-import React, { Component } from 'react';
-import { getEvens, getFibonaccis, getInitial, getOdds, getPrimes } from '../../actions/actions';
+import { getEvens, getFibonaccis, getOdds, getPrimes } from '../../actions/actions';
 import NumberSelector from './number-selector';
 import Numbers from './numbers';
+import React from 'react';
+import { connect } from 'react-redux';
 
-class NumbersContainer extends Component {
 
-    constructor(props) {
-        super(props);
+const numbersToShow = 100;
 
-        this.numbersToShow = props.numbersToShow;
-        const { store } = props;
-        store.dispatch(getInitial(props.numbersToShow));
-        this.state = store.getState();
-        store.subscribe(this.onStoreUpdate.bind(this));
-    }
+const mapStateToProps = (state) => ({
+    numbers: numbersToShow,
+    selection: state.numbers
+});
 
-    onStoreUpdate() {
-        this.setState(this.props.store.getState());
-    }
-
-    onChoiceChange(e) {
-        const { store } = this.props;
+const mapDispatchToProps = (dispatch) => ({
+    onChoiceChange: (e) => {
         switch (e.target.value) {
             case 'odd':
-                store.dispatch(getOdds(this.numbersToShow));
+                dispatch(getOdds(numbersToShow));
                 break;
             case 'even':
-                store.dispatch(getEvens(this.numbersToShow));
+                dispatch(getEvens(numbersToShow));
                 break;
             case 'primes':
-                store.dispatch(getPrimes(this.numbersToShow));
+                dispatch(getPrimes(numbersToShow));
                 break;
             case 'fibonacci':
-                store.dispatch(getFibonaccis(this.numbersToShow));
+                dispatch(getFibonaccis(numbersToShow));
                 break;
 
             default:
-                store.dispatch(getEvens(this.numbersToShow));
+                dispatch(getEvens(numbersToShow));
                 break;
         }
     }
+});
 
-    render() {
-        return (
-            <div>
-                <h3>Numbers</h3>
-                <NumberSelector
-                    onChoiceChange={ this.onChoiceChange.bind(this) }>
-                </NumberSelector>
-                <Numbers
-                    max={ this.props.numbersToShow } selection={ this.state.numbers }>
-                </Numbers>
-            </div>
-        );
-    }
-}
+
+const NumbersDisplay = (props) => {
+    const { numbers, selection, onChoiceChange } = props;
+
+    return (
+        <div>
+            <h3>Numbers</h3>
+            <NumberSelector
+                onChoiceChange={ onChoiceChange }>
+            </NumberSelector>
+            <Numbers
+                max={ numbers } selection={ selection }>
+            </Numbers>
+        </div>
+    );
+};
+
+const NumbersContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(NumbersDisplay);
 
 export default NumbersContainer;

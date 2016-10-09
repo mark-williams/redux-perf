@@ -1,36 +1,12 @@
-import React, { Component } from 'react';
 import Time from './time';
-import { updateTime } from '../../actions/actions';
+import { connect } from 'react-redux';
 
-class TimeContainer extends Component {
-    constructor(props) {
-        super(props);
+const mapStateToProps = (state) => {
+    return { time: state.time.currentTime };
+};
 
-        const { store } = props;
-
-        this.state = store.getState();
-        store.subscribe(this.onStoreUpdate.bind(this));
-    }
-
-    componentDidMount() {
-        setInterval(() => {
-            this.props.store.dispatch(updateTime());
-        }, 10);
-    }
-
-    onStoreUpdate() {
-        this.setState(this.props.store.getState());
-    }
-
-    render() {
-        return (
-            <div>
-                <h2>Time</h2>
-                <Time time={ this.state.time.currentTime }></Time>
-            </div>
-        );
-    }
-}
-
+const TimeContainer = connect(
+    mapStateToProps
+)(Time);
 
 export default TimeContainer;
