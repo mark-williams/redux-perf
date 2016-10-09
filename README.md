@@ -21,3 +21,15 @@ Step 1 is to remove individual imports of the store and pass it down via props t
 ~~~
 
 Step 2 uses *connect()* to create the container components, requiring refactoring to create the appropriate mapping functions. The issue now is that as our *TimeContainer* is now stateless we ned to reinstroduce the timed action that updates the time. 
+
+Continuous time updating is now restored. Took a simple approach - set up the *dispatch* action in the *mapDispatchToProps* function that will be invoked when setting up the component with *connect()*. Here we don't need any callbacks setting up to dispatch actions, but the function provides a neat hook with access to *dispatch* that allows us to raise the update action on an interval.
+
+~~~
+const mapDispatchToProps = (dispatch) => {
+    setInterval(() => {
+        dispatch(updateTime());
+    }, 10);
+
+    return {};
+};
+~~~
