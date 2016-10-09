@@ -19,3 +19,5 @@ Step 1 is to remove individual imports of the store and pass it down via props t
  this.state = store.getState();
  store.subscribe(this.onStoreUpdate.bind(this));
 ~~~
+
+Step 2 uses *connect()* to create the container components, requiring refactoring to create the appropriate mapping functions. The issue now is that as our *TimeContainer* is now stateless we ned to reinstroduce the timed action that updates the time. 
