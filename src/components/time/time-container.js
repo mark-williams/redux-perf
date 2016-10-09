@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Time from './time';
 import { updateTime } from '../../actions/actions';
 
 class TimeContainer extends Component {
@@ -21,28 +22,13 @@ class TimeContainer extends Component {
         this.setState(this.props.store.getState());
     }
 
-    renderTime(time) {
-        const hours = this.zeroPad(time.getHours());
-        const mins = this.zeroPad(time.getMinutes());
-        const secs = this.zeroPad(time.getSeconds());
-        const millis = time.getMilliseconds();
-
-        return `${hours}:${mins}:${secs}:${millis}`;
-    }
-
-    zeroPad(number) {
-        if (number === 0) {
-            return '00';
-        }
-
-        return number < 10 ? `0${number}` : number;
-    }
-
     render() {
-        return <div>
-                    <h2>Time</h2>
-                    <div className="time">{ this.renderTime(this.state.time.currentTime) }</div>
-                </div>;
+        return (
+            <div>
+                <h2>Time</h2>
+                <Time time={ this.state.time.currentTime }></Time>
+            </div>
+        );
     }
 }
 
