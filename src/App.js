@@ -10,8 +10,6 @@ class App extends Component {
         this.store = props.store;
     }
     render() {
-        const { store } = this.props;
-
         return (
           <div className="App">
             <div className="App-header">
@@ -19,10 +17,10 @@ class App extends Component {
               <h2>Welcome to React</h2>
             </div>
             <div className="numbers-container">
-              <NumbersContainer store={ store } numbersToShow="1150"></NumbersContainer>
+              <NumbersContainer></NumbersContainer>
             </div>
             <div className="time-container">
-                  <TimeContainer store={ store }></TimeContainer>
+                  <TimeContainer></TimeContainer>
             </div>
           </div>
       );

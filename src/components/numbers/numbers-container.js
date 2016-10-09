@@ -5,7 +5,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 
-const numbersToShow = 100;
+const numbersToShow = 1000;
 
 const mapStateToProps = (state) => ({
     numbers: numbersToShow,
