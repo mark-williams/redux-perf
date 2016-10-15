@@ -11,7 +11,6 @@ const enumerate = (start, end, test) => {
     return results;
 };
 
-
 const isPrime = (number) => {
     if (number === 1) {
         return false;
@@ -48,17 +47,28 @@ const getFibonacci = (max) => {
     return results;
 };
 
+const cachedResults = {};
+const cachedGet = (func, key) => {
+    if (cachedResults[key]) {
+        return cachedResults[key];
+    }
+
+    const results = func();
+    cachedResults[key] = results;
+
+    return results;
+};
 
 const numbers = (state = [], action) => {
     switch (action.type) {
         case EVEN:
-            return getEvens(action.max);
+            return cachedGet(() => getEvens(action.max), action.type);
         case ODD:
-            return getOdds(action.max);
+            return cachedGet(() => getOdds(action.max), action.type);
         case PRIME:
-            return getPrimes(action.max);
+            return cachedGet(() => getPrimes(action.max), action.type);
         case FIBONACCI:
-            return getFibonacci(action.max);
+            return cachedGet(() => getFibonacci(action.max), action.type);
 
         default:
             return state;
