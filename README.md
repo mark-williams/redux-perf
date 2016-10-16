@@ -33,3 +33,8 @@ const mapDispatchToProps = (dispatch) => {
     return {};
 };
 ~~~
+
+###16 Oct 2016
+Added some basic caching to the number selection reducer. As the list of, say, primes is pretty constant (well - *very* constant!), these are now cached indefinitely once calculated.
+
+The number of numbers to display is now passed in to the numbers container component as a prop. This necessitated adding these as an extra parameter to the *mapTo...* functions that are passed to *connect()* to create the component.
