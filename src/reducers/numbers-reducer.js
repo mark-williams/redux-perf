@@ -59,6 +59,7 @@ const cachedGet = (func, key) => {
     return results;
 };
 
+
 const numbers = (state = [], action) => {
     switch (action.type) {
         case EVEN:
