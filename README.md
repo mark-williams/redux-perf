@@ -2,13 +2,13 @@
 
 A small project to investigate react-redux performance, specifically how a composite store affects the performance of its component consumers. I started thinking about this after reading the following https://github.com/reactjs/redux/issues/1303
 
-###1 Oct 2016
+### 1 Oct 2016
 Initial creation of reducers with simple tests.
 
-###8 Oct 2016
+### 8 Oct 2016
 Added an extra component that displays the current time. This is extremely arbitary, and it uses the redux store to get the current time, however the thinking here is to replicate a use case where, say, a status panel is updated based on the store and is very dynamic (say, polling an api at a small interval). The idea is to see how this affects other components that depend on the store.
 
-###9 Oct 2016
+### 9 Oct 2016
 Refactoring to use react-redux and provide store to components rather than them just importing it. This has benefts for testing, meaning a store can be mocked and passed in. 
 
 Step 1 is to remove individual imports of the store and pass it down via props to each container component. So, now each cmponent will access the store directly from its props:
@@ -34,7 +34,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 ~~~
 
-###16 Oct 2016
+### 16 Oct 2016
 Added some basic caching to the number selection reducer. As the list of, say, primes is pretty constant (well - *very* constant!), these are now cached indefinitely once calculated.
 
 The number of numbers to display is now passed in to the numbers container component as a prop. This necessitated adding these as an extra parameter to the *mapTo...* functions that are passed to *connect()* to create the component.
