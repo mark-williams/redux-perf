@@ -5,8 +5,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 
-//const numbersToShow = 1000;
-
 const mapStateToProps = (state, ownProps) => ({
     numbers: ownProps.numbersToShow,
     selection: state.numbers,

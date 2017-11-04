@@ -17,14 +17,12 @@ const renderTime = (time) => {
     return `${hours}:${mins}:${secs}:${millis}`;
 };
 
-const Time = (props) => {
-    return (
+const Time = (props) => (
         <div>
             <h3>Time</h3>
             <span className="current-time">{ renderTime(props.time) }</span>
         </div>
-    );
-};
+);
 
 export default Time;
 

@@ -2,7 +2,7 @@ import Time from './time';
 import { connect } from 'react-redux';
 import { updateTime } from '../../actions/actions';
 
-const mapStateToProps = (state) => ({ 
+const mapStateToProps = (state) => ({
     time: state.time.currentTime
 });
 
